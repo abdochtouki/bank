@@ -9,12 +9,10 @@ class Transaction
     private $date;
     private Type $type;
     private  CompteBancaire $compte;
-    public function __construct($id ,$montant ,$date,Type $type,CompteBancaire  $compte){
+    public function __construct($id ,$montant ,$date){
         $this->id=$id;
         $this->montant=$montant;
         $this->date=$date;
-        $this->type=$type;
-        $this->compte=$compte;
     }
 
     /**

@@ -8,12 +8,11 @@ class CompteBancaire {
     private $ouvert;
     private Client $client;
 
-    public function __construct($id, $rib, $solde, $ouvert, Client $client) {
+    public function __construct($id, $rib, $solde, $ouvert) {
         $this->id = $id;
         $this->rib = $rib;
         $this->solde = $solde;
         $this->ouvert = $ouvert;
-        $this->client = $client;
     }
 
 

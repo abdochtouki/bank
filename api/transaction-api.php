@@ -61,11 +61,16 @@ switch ($method) {
 
     case 'POST':
         $data = json_decode(file_get_contents('php://input'), true);
-        if(isset($data['montant'],$data['date'],$data['type_id'],$data['rib'])){
-            $client = new Client(null, "", "", 0);
-            $compte = new CompteBancaire(null, $data['rib'], 0, "", $client);
-            $type = new Type($data['type_id'], "", "");
-            $transaction = new Transaction(null, $data['montant'], $data['date'], $type, $compte);
+        if(isset($data['montant'],$data['date'],$data['type'],$data['compte'])){
+
+            $transaction = new Transaction(null, $data['montant'], $data['date']);
+            $type = new Type(null,"",0);
+            $type->setId($data['type']['id']);
+            $transaction->setType($type);
+
+            $compte = new CompteBancaire(null,"","","");
+            $compte->setRib($data['compte']['rib']);
+            $transaction->setCompte($compte);
 
             $response = $ws->createTransaction($transaction);
         }
